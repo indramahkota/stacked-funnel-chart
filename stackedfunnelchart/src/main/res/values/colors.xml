@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="stack_1">#FF6C02</color>
+    <color name="stack_2">#FEC106</color>
+    <color name="stack_3">#3776C3</color>
+    <color name="stack_title_1">#97AEC9</color>
+    <color name="stack_title_2">#FFAA6D</color>
+    <color name="stack_title_3">#FFD141</color>
+</resources>

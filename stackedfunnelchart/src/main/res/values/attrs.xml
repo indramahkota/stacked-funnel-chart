@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="StackedChart">
+        <attr name="stack_title" format="string" />
+        <attr name="stack_height" format="dimension|reference" />
+        <attr name="stack_padding_bottom" format="dimension|reference" />
+        <attr name="angle_side_delta" format="integer" />
+        <attr name="stack_type" format="enum">
+            <enum name="UPPER" value="0" />
+            <enum name="MIDDLE" value="1" />
+            <enum name="BOTTOM" value="2" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="StackedFunnelChart">
+        <attr name="stacked_1_color" format="color" />
+        <attr name="stacked_2_color" format="color" />
+        <attr name="stacked_3_color" format="color" />
+        <attr name="stacked_1_title" format="string" />
+        <attr name="stacked_2_title" format="string" />
+        <attr name="stacked_3_title" format="string" />
+        <attr name="stacked_1_title_color" format="color" />
+        <attr name="stacked_2_title_color" format="color" />
+        <attr name="stacked_3_title_color" format="color" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,3 @@
+include ':stackedfunnelchart'
+include ':app'
+rootProject.name = "Stacked Funnel Chart"
