@@ -16,10 +16,29 @@ class StackedChart @JvmOverloads constructor(
 
     // For area of stacked bar chart
     private var width = 0f
-    private var height = 0f
-    private var angle = 0f
+
+    var height = 0f
+        set(value) {
+            field = value * dip
+            requestLayout()
+            invalidate()
+        }
+
+    var angle = 0f
+        set(value) {
+            field = value
+            invalidate()
+        }
+
     private var delta = 0f
-    private var bottom = 0f
+
+    var bottom = 0f
+        set(value) {
+            field = value * dip
+            requestLayout()
+            invalidate()
+        }
+
     private var paddingHorizontal = 0f
     private var paddingHorizontalFixed = 0f //fixed size for background title
     private var drawingAreaBound = RectF()
@@ -127,12 +146,10 @@ class StackedChart @JvmOverloads constructor(
             type = Type.values()[array.getInt(R.styleable.StackedChart_stack_type, 0)]
             angle = array.getInt(R.styleable.StackedChart_angle_side_delta, DEFAULT_ANGLE).toFloat()
             height = array.getDimensionPixelSize(
-                R.styleable.StackedChart_stack_height,
-                (DEFAULT_HEIGHT * dip).toInt()
+                R.styleable.StackedChart_stack_height, DEFAULT_HEIGHT
             ).toFloat()
             bottom = array.getDimensionPixelSize(
-                R.styleable.StackedChart_stack_padding_bottom,
-                (DEFAULT_PADDING_BOTTOM * dip).toInt()
+                R.styleable.StackedChart_stack_padding_bottom, DEFAULT_PADDING_BOTTOM
             ).toFloat()
             titleText = array.getString(R.styleable.StackedChart_stack_title)
                 ?: DEFAULT_TITLE_TEXT_FOR_WIDTH_SIZE

@@ -133,4 +133,105 @@ class StackedFunnelChart @JvmOverloads constructor(
         }
     }
 
+    fun showBackgroundColor(value: Boolean) {
+        chartBar1.showBackground = value
+        chartBar2.showBackground = value
+        chartBar3.showBackground = value
+    }
+
+    fun setStackedFunnelChartAngle(value: Float) {
+        chartBar1.angle = value
+        chartBar2.angle = value
+        chartBar3.angle = value
+    }
+
+    fun setStackedFunnelChartHeight(value: Float) {
+        chartBar1.height = value
+        chartBar2.height = value
+        chartBar3.height = value
+    }
+
+    fun setStackedFunnelChartBottom(value: Float) {
+        chartBar1.bottom = value
+        chartBar2.bottom = value
+        chartBar3.bottom = value
+    }
+
+    fun setStackedFunnelChartPaddingHorizontal(value: LayoutParams) {
+        chartBar1.layoutParams = value
+        chartBar2.layoutParams = value
+        chartBar3.layoutParams = value
+    }
+
+    fun setChartBar1Stacked1Percent(value: Float) {
+        chartBar1.stacked1Percent = value
+    }
+
+    fun setChartBar1Stacked2Percent(value: Float) {
+        chartBar1.stacked2Percent = value
+    }
+
+    fun setChartBar1Stacked3Percent(value: Float) {
+        chartBar1.stacked3Percent = value
+    }
+
+    fun setChartBar1Stacked1Text(value: String) {
+        chartBar1.stacked1Text = value
+    }
+
+    fun setChartBar1Stacked2Text(value: String) {
+        chartBar1.stacked2Text = value
+    }
+
+    fun setChartBar1Stacked3Text(value: String) {
+        chartBar1.stacked3Text = value
+    }
+
+    fun setChartBar2Stacked1Percent(value: Float) {
+        chartBar2.stacked1Percent = value
+    }
+
+    fun setChartBar2Stacked2Percent(value: Float) {
+        chartBar2.stacked2Percent = value
+    }
+
+    fun setChartBar2Stacked3Percent(value: Float) {
+        chartBar2.stacked3Percent = value
+    }
+
+    fun setChartBar2Stacked1Text(value: String) {
+        chartBar2.stacked1Text = value
+    }
+
+    fun setChartBar2Stacked2Text(value: String) {
+        chartBar2.stacked2Text = value
+    }
+
+    fun setChartBar2Stacked3Text(value: String) {
+        chartBar2.stacked3Text = value
+    }
+
+    fun setChartBar3Stacked1Percent(value: Float) {
+        chartBar3.stacked1Percent = value
+    }
+
+    fun setChartBar3Stacked2Percent(value: Float) {
+        chartBar3.stacked2Percent = value
+    }
+
+    fun setChartBar3Stacked3Percent(value: Float) {
+        chartBar3.stacked3Percent = value
+    }
+
+    fun setChartBar3Stacked1Text(value: String) {
+        chartBar3.stacked1Text = value
+    }
+
+    fun setChartBar3Stacked2Text(value: String) {
+        chartBar3.stacked2Text = value
+    }
+
+    fun setChartBar3Stacked3Text(value: String) {
+        chartBar3.stacked3Text = value
+    }
 }
