@@ -40,7 +40,7 @@ class StackedChart @JvmOverloads constructor(
         }
 
     private var paddingHorizontal = 0f
-    private var minimumPaddingHorizontal = 0f //fixed size for background title
+    private var minimumPaddingHorizontal = 0f
     private var drawingAreaBound = RectF()
 
     var showBackground = false
@@ -50,15 +50,15 @@ class StackedChart @JvmOverloads constructor(
         }
 
     // For title of stacked bar chart
-    var titleText = ""
+    var titleText = "-"
         set(value) {
             field = value
             invalidate()
         }
 
-    private var titleTextSize = 14f
-    private var titlePaddingStart = 4f
-    private var titlePaddingEnd = 14f
+    private var titleTextSize = 0f
+    private var titlePaddingStart = 0f
+    private var titlePaddingEnd = 0f
     private var titleCenterValue = 0f
     private var titleBound = Rect()
     private var titleTextPaint: TextPaint
@@ -95,33 +95,33 @@ class StackedChart @JvmOverloads constructor(
             invalidate()
         }
 
-    var stacked1Color = Color.parseColor("#FF6C02")
+    var stacked1Color = 0
         set(value) {
             field = value
             invalidate()
         }
-    var stacked2Color = Color.parseColor("#FEC106")
+    var stacked2Color = 0
         set(value) {
             field = value
             invalidate()
         }
-    var stacked3Color = Color.parseColor("#3776C3")
+    var stacked3Color = 0
         set(value) {
             field = value
             invalidate()
         }
 
-    var stackedTitle1Color = Color.parseColor("#97AEC9")
+    var stackedTitle1Color = 0
         set(value) {
             field = value
             invalidate()
         }
-    var stackedTitle2Color = Color.parseColor("#FFAA6D")
+    var stackedTitle2Color = 0
         set(value) {
             field = value
             invalidate()
         }
-    var stackedTitle3Color = Color.parseColor("#FFD141")
+    var stackedTitle3Color = 0
         set(value) {
             field = value
             invalidate()
@@ -157,7 +157,29 @@ class StackedChart @JvmOverloads constructor(
             array.recycle()
         }
 
-        titleTextPaint = buildTextPaint(titleTextSize * dip)
+        titleTextSize = resources.getDimension(R.dimen.title_text_size)
+        titlePaddingStart = resources.getDimension(R.dimen.title_padding_start)
+        titlePaddingEnd = resources.getDimension(R.dimen.title_padding_end)
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            stacked1Color = resources.getColor(R.color.stack_1, null)
+            stacked2Color = resources.getColor(R.color.stack_2, null)
+            stacked3Color = resources.getColor(R.color.stack_3, null)
+
+            stackedTitle1Color = resources.getColor(R.color.stack_title_1, null)
+            stackedTitle2Color = resources.getColor(R.color.stack_title_2, null)
+            stackedTitle3Color = resources.getColor(R.color.stack_title_3, null)
+        } else {
+            stacked1Color = resources.getColor(R.color.stack_1)
+            stacked2Color = resources.getColor(R.color.stack_2)
+            stacked3Color = resources.getColor(R.color.stack_3)
+
+            stackedTitle1Color = resources.getColor(R.color.stack_title_1)
+            stackedTitle2Color = resources.getColor(R.color.stack_title_2)
+            stackedTitle3Color = resources.getColor(R.color.stack_title_3)
+        }
+
+        titleTextPaint = buildTextPaint(titleTextSize)
         titleTextPaint.getTextBounds(
             DEFAULT_TITLE_TEXT_FOR_WIDTH_SIZE,
             0,
