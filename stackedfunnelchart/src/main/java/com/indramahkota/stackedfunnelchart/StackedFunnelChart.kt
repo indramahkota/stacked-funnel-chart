@@ -1,6 +1,7 @@
 package com.indramahkota.stackedfunnelchart
 
 import android.content.Context
+import android.content.res.TypedArray
 import android.os.Build
 import android.util.AttributeSet
 import android.widget.LinearLayout
@@ -22,47 +23,24 @@ class StackedFunnelChart @JvmOverloads constructor(
 
         val array = getContext().obtainStyledAttributes(attrs, R.styleable.StackedFunnelChart)
         try {
-            val stackedColor1 =
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    array.getColor(
-                        R.styleable.StackedFunnelChart_stacked_1_color,
-                        resources.getColor(R.color.stack_1, null)
-                    )
-                } else {
-                    array.getColor(
-                        R.styleable.StackedFunnelChart_stacked_1_color,
-                        resources.getColor(R.color.stack_1)
-                    )
-                }
-
-            val stackedColor2 =
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    array.getColor(
-                        R.styleable.StackedFunnelChart_stacked_2_color,
-                        resources.getColor(R.color.stack_2, null)
-                    )
-                } else {
-                    array.getColor(
-                        R.styleable.StackedFunnelChart_stacked_2_color,
-                        resources.getColor(R.color.stack_2)
-                    )
-                }
-
-            val stackedColor3 =
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    array.getColor(
-                        R.styleable.StackedFunnelChart_stacked_3_color,
-                        resources.getColor(R.color.stack_3, null)
-                    )
-                } else {
-                    array.getColor(
-                        R.styleable.StackedFunnelChart_stacked_3_color,
-                        resources.getColor(R.color.stack_3)
-                    )
-                }
+            val stackedColor1 = getColorFromResources(
+                array,
+                R.styleable.StackedFunnelChart_stacked_1_color,
+                R.color.stack_1
+            )
+            val stackedColor2 = getColorFromResources(
+                array,
+                R.styleable.StackedFunnelChart_stacked_2_color,
+                R.color.stack_2
+            )
+            val stackedColor3 = getColorFromResources(
+                array,
+                R.styleable.StackedFunnelChart_stacked_3_color,
+                R.color.stack_3
+            )
 
             chartBar1.stacked1Color = stackedColor1
-            chartBar1.stacked2Color = stackedColor2
+            chartBar1.stacked2Color = stackedColor1
             chartBar1.stacked3Color = stackedColor3
 
             chartBar2.stacked1Color = stackedColor1
@@ -73,44 +51,21 @@ class StackedFunnelChart @JvmOverloads constructor(
             chartBar3.stacked2Color = stackedColor2
             chartBar3.stacked3Color = stackedColor3
 
-            val stackedTitleColor1 =
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    array.getColor(
-                        R.styleable.StackedFunnelChart_stacked_1_title_color,
-                        resources.getColor(R.color.stack_title_1, null)
-                    )
-                } else {
-                    array.getColor(
-                        R.styleable.StackedFunnelChart_stacked_1_title_color,
-                        resources.getColor(R.color.stack_title_1)
-                    )
-                }
-
-            val stackedTitleColor2 =
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    array.getColor(
-                        R.styleable.StackedFunnelChart_stacked_2_title_color,
-                        resources.getColor(R.color.stack_title_2, null)
-                    )
-                } else {
-                    array.getColor(
-                        R.styleable.StackedFunnelChart_stacked_2_title_color,
-                        resources.getColor(R.color.stack_title_2)
-                    )
-                }
-
-            val stackedTitleColor3 =
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    array.getColor(
-                        R.styleable.StackedFunnelChart_stacked_3_title_color,
-                        resources.getColor(R.color.stack_title_3, null)
-                    )
-                } else {
-                    array.getColor(
-                        R.styleable.StackedFunnelChart_stacked_3_title_color,
-                        resources.getColor(R.color.stack_title_3)
-                    )
-                }
+            val stackedTitleColor1 = getColorFromResources(
+                array,
+                R.styleable.StackedFunnelChart_stacked_1_title_color,
+                R.color.stack_title_1
+            )
+            val stackedTitleColor2 = getColorFromResources(
+                array,
+                R.styleable.StackedFunnelChart_stacked_2_title_color,
+                R.color.stack_title_2
+            )
+            val stackedTitleColor3 = getColorFromResources(
+                array,
+                R.styleable.StackedFunnelChart_stacked_3_title_color,
+                R.color.stack_title_3
+            )
 
             chartBar1.stackedTitle1Color = stackedTitleColor1
             chartBar2.stackedTitle2Color = stackedTitleColor2
@@ -130,6 +85,14 @@ class StackedFunnelChart @JvmOverloads constructor(
             chartBar3.titleText = stackedTitle3
         } finally {
             array.recycle()
+        }
+    }
+
+    private fun getColorFromResources(array: TypedArray, id: Int, default: Int): Int {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            array.getColor(id, resources.getColor(default, null))
+        } else {
+            array.getColor(id, resources.getColor(default))
         }
     }
 
