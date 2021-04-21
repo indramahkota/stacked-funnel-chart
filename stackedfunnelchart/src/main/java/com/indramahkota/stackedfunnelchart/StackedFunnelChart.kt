@@ -40,7 +40,7 @@ class StackedFunnelChart @JvmOverloads constructor(
             )
 
             chartBar1.stacked1Color = stackedColor1
-            chartBar1.stacked2Color = stackedColor1
+            chartBar1.stacked2Color = stackedColor2
             chartBar1.stacked3Color = stackedColor3
 
             chartBar2.stacked1Color = stackedColor1
