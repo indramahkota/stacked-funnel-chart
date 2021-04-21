@@ -40,7 +40,7 @@ class StackedChart @JvmOverloads constructor(
         }
 
     private var paddingHorizontal = 0f
-    private var paddingHorizontalFixed = 0f //fixed size for background title
+    private var minimumPaddingHorizontal = 0f //fixed size for background title
     private var drawingAreaBound = RectF()
 
     var showBackground = false
@@ -182,7 +182,7 @@ class StackedChart @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas?) {
         delta = calculateSideDelta(angle, height)
         paddingHorizontal = titlePaddingStart + titleBound.width() + titlePaddingEnd
-        paddingHorizontalFixed = paddingHorizontal
+        minimumPaddingHorizontal = paddingHorizontal
 
         when (type) {
             Type.MIDDLE -> paddingHorizontal = max(
@@ -211,7 +211,7 @@ class StackedChart @JvmOverloads constructor(
             titleText.length,
             titleBound
         )
-        titleCenterValue = (paddingHorizontalFixed - titleBound.width()) / 2
+        titleCenterValue = (minimumPaddingHorizontal - titleBound.width()) / 2
 
         if (showBackground) canvas?.drawColor(Color.GRAY)
 
@@ -244,7 +244,7 @@ class StackedChart @JvmOverloads constructor(
             Type.MIDDLE -> {
                 canvas.drawRoundRect(
                     RectF(
-                        paddingHorizontal - paddingHorizontalFixed,
+                        paddingHorizontal - minimumPaddingHorizontal,
                         paddingVertical,
                         drawingAreaBound.width() / 2,
                         height - paddingVertical
@@ -253,7 +253,7 @@ class StackedChart @JvmOverloads constructor(
                     )
                 )
                 canvas.drawText(
-                    titleText, paddingHorizontal - paddingHorizontalFixed + titleCenterValue,
+                    titleText, paddingHorizontal - minimumPaddingHorizontal + titleCenterValue,
                     (height + titleBound.height()) / 2.0f, titleTextPaint
                 )
             }
@@ -262,7 +262,7 @@ class StackedChart @JvmOverloads constructor(
                     RectF(
                         drawingAreaBound.width() / 2,
                         paddingVertical,
-                        0.5f * (drawingAreaBound.width() + width) + paddingHorizontalFixed,
+                        0.5f * (drawingAreaBound.width() + width) + minimumPaddingHorizontal,
                         height - paddingVertical
                     ), radius, radius, buildPaint(
                         stackedTitle3Color
