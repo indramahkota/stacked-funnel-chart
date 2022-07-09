@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingHorizontal="16dp"
     android:paddingVertical="32dp">
 
@@ -27,7 +27,7 @@
             android:layout_marginHorizontal="130dp"
             android:layout_marginTop="24dp"
             android:checked="false"
-            android:text="Background" />
+            android:text="@string/background" />
 
         <SeekBar
             android:id="@+id/seekBar1"
@@ -63,6 +63,6 @@
             android:layout_height="56dp"
             android:layout_marginHorizontal="50dp"
             android:layout_marginVertical="32dp"
-            android:text="Random" />
+            android:text="@string/random" />
     </LinearLayout>
 </ScrollView>

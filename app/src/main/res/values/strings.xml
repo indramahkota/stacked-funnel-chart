@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Stacked Funnel Chart</string>
+    <string name="background">Background</string>
+    <string name="random">Random</string>
 </resources>

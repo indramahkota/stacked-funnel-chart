@@ -8,19 +8,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.indramahkota.stackedfunnelchart.stackedchart.StackedChart
+        <com.indramahkota.stackedfunnelchart.chart.StackedChart
             android:id="@+id/stacked1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:stack_type="UPPER" />
 
-        <com.indramahkota.stackedfunnelchart.stackedchart.StackedChart
+        <com.indramahkota.stackedfunnelchart.chart.StackedChart
             android:id="@+id/stacked2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:stack_type="MIDDLE" />
 
-        <com.indramahkota.stackedfunnelchart.stackedchart.StackedChart
+        <com.indramahkota.stackedfunnelchart.chart.StackedChart
             android:id="@+id/stacked3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

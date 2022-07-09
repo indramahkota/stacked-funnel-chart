@@ -12,14 +12,8 @@
         </attr>
     </declare-styleable>
     <declare-styleable name="StackedFunnelChart">
-        <attr name="stacked_1_color" format="color" />
-        <attr name="stacked_2_color" format="color" />
-        <attr name="stacked_3_color" format="color" />
         <attr name="stacked_1_title" format="string" />
         <attr name="stacked_2_title" format="string" />
         <attr name="stacked_3_title" format="string" />
-        <attr name="stacked_1_title_color" format="color" />
-        <attr name="stacked_2_title_color" format="color" />
-        <attr name="stacked_3_title_color" format="color" />
     </declare-styleable>
 </resources>

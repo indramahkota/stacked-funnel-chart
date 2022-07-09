@@ -1,12 +1,23 @@
-package com.indramahkota.stackedfunnelchart.stackedchart
+package com.indramahkota.stackedfunnelchart.chart
 
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Path
+import android.graphics.Rect
+import android.graphics.RectF
+import android.graphics.Typeface
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.indramahkota.stackedfunnelchart.R
-import com.indramahkota.stackedfunnelchart.stackedchart.StackedChart.Type.*
+import com.indramahkota.stackedfunnelchart.chart.StackedChart.Type.BOTTOM
+import com.indramahkota.stackedfunnelchart.chart.StackedChart.Type.MIDDLE
+import com.indramahkota.stackedfunnelchart.chart.StackedChart.Type.UPPER
+import com.indramahkota.stackedfunnelchart.chart.StackedChart.Type.values
+import com.indramahkota.stackedfunnelchart.model.StackedModel
 import kotlin.math.sin
 
 class StackedChart @JvmOverloads constructor(
@@ -56,6 +67,16 @@ class StackedChart @JvmOverloads constructor(
             invalidate()
         }
 
+    private var values = listOf(0.33f, 0.33f, 0.33f)
+    var model = StackedModel()
+        set(value) {
+            field = value
+            values = value.getEachPercent()
+            requestLayout()
+            invalidate()
+        }
+
+    private var colorValues = mutableListOf<Int>()
     private var titleTextSize = 0f
     private var titlePaddingStart = 0f
     private var titlePaddingEnd = 0f
@@ -63,70 +84,6 @@ class StackedChart @JvmOverloads constructor(
     private var titleBound = Rect()
     private var titleMinimumBound = Rect()
     private var titleTextPaint: TextPaint
-
-    var stacked1Text = "-"
-        set(value) {
-            field = value
-            invalidate()
-        }
-    var stacked2Text = "-"
-        set(value) {
-            field = value
-            invalidate()
-        }
-    var stacked3Text = "-"
-        set(value) {
-            field = value
-            invalidate()
-        }
-
-    var stacked1Percent = 1 / 3f
-        set(value) {
-            field = value
-            invalidate()
-        }
-    var stacked2Percent = 1 / 3f
-        set(value) {
-            field = value
-            invalidate()
-        }
-    var stacked3Percent = 1 / 3f
-        set(value) {
-            field = value
-            invalidate()
-        }
-
-    var stacked1Color = 0
-        set(value) {
-            field = value
-            invalidate()
-        }
-    var stacked2Color = 0
-        set(value) {
-            field = value
-            invalidate()
-        }
-    var stacked3Color = 0
-        set(value) {
-            field = value
-            invalidate()
-        }
-
-    var stackedTitle1Color = 0
-        set(value) {
-            field = value
-            invalidate()
-        }
-    var stackedTitle2Color = 0
-        set(value) {
-            field = value
-            invalidate()
-        }
-    var stackedTitle3Color = 0
-        set(value) {
-            field = value
-            invalidate()
-        }
 
     private var type = UPPER
 
@@ -142,6 +99,10 @@ class StackedChart @JvmOverloads constructor(
     }
 
     init {
+        colorValues.add(ContextCompat.getColor(context, R.color.stack_title_1))
+        colorValues.add(ContextCompat.getColor(context, R.color.stack_title_2))
+        colorValues.add(ContextCompat.getColor(context, R.color.stack_title_3))
+
         val array = getContext().obtainStyledAttributes(attrs, R.styleable.StackedChart)
         try {
             type = values()[array.getInt(R.styleable.StackedChart_stack_type, 0)]
@@ -161,24 +122,6 @@ class StackedChart @JvmOverloads constructor(
         titleTextSize = resources.getDimension(R.dimen.title_text_size)
         titlePaddingStart = resources.getDimension(R.dimen.title_padding_start)
         titlePaddingEnd = resources.getDimension(R.dimen.title_padding_end)
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            stacked1Color = resources.getColor(R.color.stack_1, null)
-            stacked2Color = resources.getColor(R.color.stack_2, null)
-            stacked3Color = resources.getColor(R.color.stack_3, null)
-
-            stackedTitle1Color = resources.getColor(R.color.stack_title_1, null)
-            stackedTitle2Color = resources.getColor(R.color.stack_title_2, null)
-            stackedTitle3Color = resources.getColor(R.color.stack_title_3, null)
-        } else {
-            stacked1Color = resources.getColor(R.color.stack_1)
-            stacked2Color = resources.getColor(R.color.stack_2)
-            stacked3Color = resources.getColor(R.color.stack_3)
-
-            stackedTitle1Color = resources.getColor(R.color.stack_title_1)
-            stackedTitle2Color = resources.getColor(R.color.stack_title_2)
-            stackedTitle3Color = resources.getColor(R.color.stack_title_3)
-        }
 
         titleTextPaint = buildTextPaint(titleTextSize)
         titleTextPaint.getTextBounds(
@@ -241,9 +184,7 @@ class StackedChart @JvmOverloads constructor(
                         paddingVertical,
                         drawingAreaBound.width(),
                         height - paddingVertical
-                    ), radius, radius, buildPaint(
-                        stackedTitle1Color
-                    )
+                    ), radius, radius, buildPaint(colorValues[0])
                 )
                 canvas.drawText(
                     titleText, drawingAreaBound.width() - (titleBound.width() + titlePaddingEnd),
@@ -257,9 +198,7 @@ class StackedChart @JvmOverloads constructor(
                         paddingVertical,
                         drawingAreaBound.width() / 2,
                         height - paddingVertical
-                    ), radius, radius, buildPaint(
-                        stackedTitle2Color
-                    )
+                    ), radius, radius, buildPaint(colorValues[1])
                 )
                 canvas.drawText(
                     titleText, paddingHorizontal - minimumPaddingHorizontal + titleCenterValue,
@@ -273,9 +212,7 @@ class StackedChart @JvmOverloads constructor(
                         paddingVertical,
                         0.5f * (drawingAreaBound.width() + width) + minimumPaddingHorizontal,
                         height - paddingVertical
-                    ), radius, radius, buildPaint(
-                        stackedTitle3Color
-                    )
+                    ), radius, radius, buildPaint(colorValues[2])
                 )
                 canvas.drawText(
                     titleText,
@@ -297,18 +234,18 @@ class StackedChart @JvmOverloads constructor(
         canvas.clipPath(path)
         path.rewind()
 
-        val width11 = stacked1Percent * width
+        val width11 = values[0] * width
         path.addRect(
             RectF(paddingHorizontal, 0f, paddingHorizontal + width11, height),
             Path.Direction.CCW
         )
-        canvas.drawPath(path, buildPaint(stacked1Color))
+        canvas.drawPath(path, buildPaint(ContextCompat.getColor(context, R.color.stack_1)))
 
         val stacked1TextBounds = Rect()
         titleTextPaint.getTextBounds(
-            stacked1Text.toCharArray(),
+            "${values[0]}%".toCharArray(),
             0,
-            stacked1Text.toCharArray().size,
+            "${values[0]}%".toCharArray().size,
             stacked1TextBounds
         )
         var stacked1TextX = paddingHorizontal + delta
@@ -316,7 +253,7 @@ class StackedChart @JvmOverloads constructor(
             stacked1TextX = paddingHorizontal + (width11 - stacked1TextBounds.width()) / 2
         }
         canvas.drawText(
-            stacked1Text,
+            "${values[0]}%",
             stacked1TextX,
             (height + stacked1TextBounds.height()) / 2f,
             titleTextPaint
@@ -324,7 +261,7 @@ class StackedChart @JvmOverloads constructor(
 
         path.rewind()
 
-        val width12 = stacked2Percent * width
+        val width12 = values[1] * width
         path.addRect(
             RectF(
                 paddingHorizontal + width11,
@@ -333,13 +270,13 @@ class StackedChart @JvmOverloads constructor(
                 height
             ), Path.Direction.CCW
         )
-        canvas.drawPath(path, buildPaint(stacked2Color))
+        canvas.drawPath(path, buildPaint(ContextCompat.getColor(context, R.color.stack_2)))
 
         val stacked2TextBounds = Rect()
         titleTextPaint.getTextBounds(
-            stacked2Text.toCharArray(),
+            "${values[1]}%".toCharArray(),
             0,
-            stacked2Text.toCharArray().size,
+            "${values[1]}%".toCharArray().size,
             stacked2TextBounds
         )
         var stacked2TextX = paddingHorizontal + width11 + 5 * dip
@@ -347,7 +284,7 @@ class StackedChart @JvmOverloads constructor(
             stacked2TextX = paddingHorizontal + width11 + (width12 - stacked2TextBounds.width()) / 2
         }
         canvas.drawText(
-            stacked2Text,
+            "${values[1]}%",
             stacked2TextX,
             (height + stacked2TextBounds.height()) / 2f,
             titleTextPaint
@@ -355,7 +292,7 @@ class StackedChart @JvmOverloads constructor(
 
         path.rewind()
 
-        val width13 = stacked3Percent * width
+        val width13 = values[2] * width
         path.addRect(
             RectF(
                 paddingHorizontal + width11 + width12,
@@ -364,13 +301,13 @@ class StackedChart @JvmOverloads constructor(
                 height
             ), Path.Direction.CCW
         )
-        canvas.drawPath(path, buildPaint(stacked3Color))
+        canvas.drawPath(path, buildPaint(ContextCompat.getColor(context, R.color.stack_3)))
 
         val stacked3TextBounds = Rect()
         titleTextPaint.getTextBounds(
-            stacked3Text.toCharArray(),
+            "${values[2]}%".toCharArray(),
             0,
-            stacked3Text.toCharArray().size,
+            "${values[2]}%".toCharArray().size,
             stacked3TextBounds
         )
         var stacked3TextX = paddingHorizontal + width11 + width12 + 5 * dip
@@ -379,7 +316,7 @@ class StackedChart @JvmOverloads constructor(
                 paddingHorizontal + width11 + width12 + (width13 - stacked3TextBounds.width()) / 2
         }
         canvas.drawText(
-            stacked3Text,
+            "${values[2]}%",
             stacked3TextX,
             (height + stacked3TextBounds.height()) / 2f,
             titleTextPaint
