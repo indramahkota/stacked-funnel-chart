@@ -13,7 +13,7 @@ import kotlin.random.Random
 
 fun SeekBar.onChanged(changeListener: ((progress: Int) -> Unit)? = null) {
     this.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
-        override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+        override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
             changeListener?.invoke(progress)
         }
 
