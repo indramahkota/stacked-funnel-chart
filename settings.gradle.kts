@@ -6,7 +6,6 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
-        maven { setUrl("https://jitpack.io") }
     }
 }
 

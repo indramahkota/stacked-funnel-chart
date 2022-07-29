@@ -57,8 +57,8 @@ afterEvaluate {
                 from(components["release"])
 
                 groupId = "com.github.indramahkota"
-                artifactId = "stackedfunnelchart"
-                version = "0.0.2"
+                artifactId = "stacked-funnel-chart"
+                version = "0.0.3"
             }
         }
     }
