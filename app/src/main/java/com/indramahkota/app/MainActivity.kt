@@ -1,4 +1,4 @@
-package com.indramahkota.stackedfunnelchart
+package com.indramahkota.app
 
 import android.os.Bundle
 import android.widget.CheckBox
@@ -6,7 +6,7 @@ import android.widget.LinearLayout
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.appcompat.app.AppCompatActivity
-import com.indramahkota.stackedfunnelchart.databinding.ActivityMainBinding
+import com.indramahkota.app.databinding.ActivityMainBinding
 import com.indramahkota.stackedfunnelchart.model.StackedFunnelModel
 import com.indramahkota.stackedfunnelchart.model.StackedModel
 import kotlin.random.Random
@@ -51,8 +51,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             val params = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
             )
 
             seekBar4.onChanged { progress ->

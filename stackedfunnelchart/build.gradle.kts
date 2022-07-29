@@ -12,6 +12,7 @@ android {
 
     defaultConfig {
         minSdk = 21
+        targetSdk = 33
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -57,7 +58,7 @@ afterEvaluate {
 
                 groupId = "com.github.indramahkota"
                 artifactId = "stacked-funnel-chart"
-                version = "0.0.5"
+                version = "0.0.6"
             }
         }
     }

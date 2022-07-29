@@ -1,4 +1,4 @@
-package com.indramahkota.stackedfunnelchart
+package com.indramahkota.app
 
 import org.junit.Test
 

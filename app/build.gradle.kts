@@ -18,8 +18,18 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        create("release") {
+            keyAlias = "release-alias"
+            keyPassword = "12345678"
+            storeFile = file("../keystore/release-key.jks")
+            storePassword = "12345678"
+        }
+    }
+
     buildTypes {
         getByName("release") {
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = false // Enables code shrinking for the release build type.
             proguardFiles(
                 getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
