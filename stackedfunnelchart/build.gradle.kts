@@ -18,7 +18,7 @@ android {
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = true // Enables code shrinking for the release build type.
+            isMinifyEnabled = false // Enables code shrinking for the release build type.
             proguardFiles(
                 getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             )
@@ -35,7 +35,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }
 
@@ -58,7 +58,7 @@ afterEvaluate {
 
                 groupId = "com.github.indramahkota"
                 artifactId = "stacked-funnel-chart"
-                version = "0.0.3"
+                version = "0.0.4"
             }
         }
     }
