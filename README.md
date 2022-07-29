@@ -1,9 +1,44 @@
 # Stacked Funnel Chart
 
+[![GitHub](https://img.shields.io/github/license/indramahkota/stacked-funnel-chart?color=blue)](https://github.com/indramahkota/stacked-funnel-chart/blob/master/LICENSE) [![GitHub stars](https://img.shields.io/github/stars/indramahkota/stacked-funnel-chart)](https://github.com/indramahkota/stacked-funnel-chart/stargazers) [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors) [![Release](https://jitpack.io/v/indramahkota/stacked-funnel-chart.svg)](https://jitpack.io/#indramahkota/stacked-funnel-chart)
+
 Custom View for display Stacked Funnel Chart.
 
-![Stacked Funnel Chart Preview](https://raw.githubusercontent.com/indramahkota/indramahkota.github.io/master/assets/githubs/stacked%20funnel%20chart.png)
+## Installation
 
+### Add dependencies:
+
+```kotlin
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+        maven { setUrl("https://jitpack.io") }
+    }
+}
+
+dependencies {
+    implementation("com.github.indramahkota:stacked-funnel-chart:0.0.7")
+}
+```
+
+## Usage
+
+```xml
+<com.indramahkota.stackedfunnelchart.StackedFunnelChart
+    android:id="@+id/stacked_funnel_chart"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:stacked_1_title="Product 1"
+    app:stacked_2_title="Product 2"
+    app:stacked_3_title="Product 3" />
+```
+
+## Preview
+
+![Stacked Funnel Chart Preview](https://raw.githubusercontent.com/indramahkota/indramahkota.github.io/master/assets/githubs/stacked%20funnel%20chart.png)
 
 ## License
 
@@ -27,3 +62,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+```
