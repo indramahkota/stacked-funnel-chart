@@ -12,7 +12,6 @@ android {
 
     defaultConfig {
         minSdk = 21
-        targetSdk = 33
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -26,8 +25,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     buildFeatures {
@@ -58,7 +57,7 @@ afterEvaluate {
 
                 groupId = "com.github.indramahkota"
                 artifactId = "stacked-funnel-chart"
-                version = "0.0.4"
+                version = "0.0.5"
             }
         }
     }
