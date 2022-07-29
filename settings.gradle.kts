@@ -6,6 +6,7 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
+        maven { setUrl("https://jitpack.io") }
     }
 }
 
@@ -15,8 +16,9 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
+        maven { setUrl("https://jitpack.io") }
     }
 }
 
-rootProject.name = "Stacked Funnel Chart"
+rootProject.name = "stacked-funnel-chart"
 include(":app", ":stackedfunnelchart")

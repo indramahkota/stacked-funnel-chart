@@ -54,10 +54,11 @@ afterEvaluate {
     publishing {
         publications {
             create<MavenPublication>("maven") {
-                groupId = "com.github.stacked-funnel-chart"
-                artifactId = "library"
-                version = "1.0.0"
-                artifact("$buildDir/outputs/aar/${artifactId}-release.aar")
+                from(components["release"])
+
+                groupId = "com.github.indramahkota"
+                artifactId = "stackedfunnelchart"
+                version = "0.0.2"
             }
         }
     }
